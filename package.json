@@ -1,16 +1,47 @@
 {
-  "name": "reactnative12hourstimepicker",
-  "version": "1.0.0",
-  "description": "time picker",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "time",
-    "picker",
-    "timepicker"
-  ],
-  "author": "gomzales",
-  "license": "ISC"
+    "name": "react-native-12hours-timepicker",
+    "version": "1.0.0",
+    "description": "12 hours analog time picker",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/illi-homz/react-native-12hours-timepicker.git"
+    },
+    "dependencies": {
+        "react-native-svg": "^13.8.0",
+        "react-native-svg-transformer": "^1.0.0"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-native": "^0.71.3",
+        "react-native-gesture-handler": "^2.9.0",
+        "react-native-reanimated": "^3.0.1"
+    },
+    "devDependencies": {
+        "metro-react-native-babel-preset": "^0.75.1"
+    },
+    "keywords": [
+        "react-native",
+        "react-component",
+        "react-native-component",
+        "react",
+        "react native",
+        "mobile",
+        "ios",
+        "android",
+        "ui",
+        "time",
+        "picker",
+        "timepicker",
+        "analogtimepicker"
+    ],
+    "bugs": {
+        "url": "https://github.com/illi-homz/react-native-12hours-timepicker/issues"
+    },
+    "homepage": "https://github.com/illi-homz/react-native-12hours-timepicker#readme",
+    "author": "gomzales",
+    "license": "ISC"
 }
