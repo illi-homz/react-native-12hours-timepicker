@@ -29,6 +29,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 	value = '00:00',
 	periods = {},
 	periodSplitliteral = '–',
+	clockFaceNumberStyle,
 	onHourSelect,
 	onTimeSelectEnd,
 }) => {
@@ -171,7 +172,15 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 							color = hoursesColorMap[idx + 1] || colors.white;
 						}
 
-						return <HourNumber idx={idx} key={idx} containerWidth={containerWidth} color={color} />;
+						return (
+							<HourNumber
+								idx={idx}
+								key={idx}
+								containerWidth={containerWidth}
+								color={color}
+								textStyle={clockFaceNumberStyle}
+							/>
+						);
 					})}
 				</View>
 			</View>
@@ -183,6 +192,7 @@ export default memo(AnalogClock12);
 
 interface AnalogClock12Props {
 	style?: StyleProp<ViewStyle>;
+	clockFaceNumberStyle?: StyleProp<ViewStyle>;
 	width?: number;
 	height?: number;
 	topPadding?: number;

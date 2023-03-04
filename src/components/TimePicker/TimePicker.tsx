@@ -20,6 +20,7 @@ const TimePicker: FC<TimePickerProps> = ({
 	titleStyles,
 	timeStyles,
 	periodSplitliteral = '–',
+	clockFaceNumberStyle,
 }) => {
 	const [currentTime, setCurrentTime] = useState(value); // хранилище времени в 12 часовом формате
 	const [meridiem, setMeridiem] = useState<MeridiemType>('AM'); // хранилище полудня
@@ -89,6 +90,7 @@ const TimePicker: FC<TimePickerProps> = ({
 				onTimeSelectEnd={onTimeSelectEnd}
 				width={clockWidth}
 				periodSplitliteral={periodSplitliteral}
+				clockFaceNumberStyle={clockFaceNumberStyle}
 			/>
 		</View>
 	);
@@ -101,6 +103,7 @@ interface TimePickerProps {
 	timeContainerStyles?: StyleProp<ViewStyle>;
 	titleStyles?: StyleProp<ViewStyle>;
 	timeStyles?: StyleProp<ViewStyle>;
+	clockFaceNumberStyle?: StyleProp<ViewStyle>;
 	topPadding?: number;
 	clockWidth?: number;
 	value?: string;

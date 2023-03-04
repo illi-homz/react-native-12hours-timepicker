@@ -6,7 +6,7 @@ import styles from './styles';
 const nodesList12 = new Array(12).fill(null).map((_, idx) => idx);
 const itemAngle = (2 * Math.PI) / nodesList12.length;
 
-const HourNumber: FC<HourNumberProps> = ({ idx, containerWidth, color = colors.black1 }) => {
+const HourNumber: FC<HourNumberProps> = ({ idx, containerWidth, color = colors.black1, style, textStyle }) => {
 	const shift = 50;
 	const diameter = 18;
 	const freeSpace = containerWidth - diameter - shift;
@@ -16,8 +16,8 @@ const HourNumber: FC<HourNumberProps> = ({ idx, containerWidth, color = colors.b
 	const cy = ((1 + sin) * freeSpace) / 2;
 
 	return (
-		<View style={[styles.hourNumberContainer, { top: cy + shift / 2, left: cx + shift / 2 }]}>
-			<Text style={[styles.hourNumber, { color }]}>{idx + 1}</Text>
+		<View style={[styles.hourNumberContainer, { top: cy + shift / 2, left: cx + shift / 2 }, style]}>
+			<Text style={[styles.hourNumber, { color }, textStyle]}>{idx + 1}</Text>
 		</View>
 	);
 };
@@ -26,6 +26,7 @@ export default HourNumber;
 
 interface HourNumberProps {
 	style?: StyleProp<ViewStyle>;
+	textStyle?: StyleProp<ViewStyle>;
 	idx: number;
 	containerWidth: number;
 	color?: string;

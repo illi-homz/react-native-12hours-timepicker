@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
-import { fonts } from '../../utils/fonts';
 
 export default StyleSheet.create({
 	container: {
@@ -15,7 +14,7 @@ export default StyleSheet.create({
 		fontSize: 14,
 		lineHeight: 28,
 		color: colors.black1,
-		fontFamily: fonts.beVietnam500,
+		fontWeight: '500',
 	},
 	activeItem: {
 		backgroundColor: colors.black1,

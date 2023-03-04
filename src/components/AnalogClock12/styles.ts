@@ -1,11 +1,8 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
-import { fonts } from '../../utils/fonts';
 
 export default StyleSheet.create({
-	container: {
-		// backgroundColor: colors.white,
-	},
+	container: {},
 	clockSvg: {
 		margin: 14,
 	},
@@ -26,7 +23,7 @@ export default StyleSheet.create({
 	hourNumber: {
 		fontSize: 14,
 		lineHeight: 18,
-		fontFamily: fonts.beVietnam500,
+		fontWeight: '500',
 		color: colors.red1,
 	},
 	clockArrow: {
