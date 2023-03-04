@@ -1,0 +1,16 @@
+{
+  "name": "reactnative12hourstimepicker",
+  "version": "1.0.0",
+  "description": "time picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "time",
+    "picker",
+    "timepicker"
+  ],
+  "author": "gomzales",
+  "license": "ISC"
+}
