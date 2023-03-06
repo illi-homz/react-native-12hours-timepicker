@@ -35,13 +35,13 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 }) => {
 	const scale = containerWidth / 272;
 	const arrowTopPosition = useRef((containerWidth + styles.clockSvg.margin * 2 - arrowHeight) / 2).current;
-	const arrowTLeftPosition = useRef((containerWidth + styles.clockSvg.margin * 2 - arrowWidth) / 2).current;
+	const arrowTLeftPosition = useRef((containerWidth + styles.clockSvg.margin * 2 - arrowWidth) / 2 - 1).current;
 	const [initialHours] = value.split(':');
 	const container = useRef<View>(null);
 	const [currentHour, setCurrentHour] = useState(+initialHours > 12 ? +initialHours - 12 : +initialHours);
 	const arrowAngle = useSharedValue(0);
 	const animatedStyles = useAnimatedStyle(() => ({
-		transform: [{ rotateZ: arrowAngle.value + 'deg' }, { translateY: -(arrowHeight / 2) * scale }, { scale }],
+		transform: [{ rotateZ: arrowAngle.value + 'deg' }, { translateY: -(arrowHeight / 2) * scale + 1 }, { scale }],
 	}));
 
 	const hoursesColorMap = Object.keys(periods).reduce<{ [key: number]: string }>((acc, period) => {
