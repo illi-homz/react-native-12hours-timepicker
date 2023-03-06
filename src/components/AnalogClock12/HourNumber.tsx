@@ -17,7 +17,7 @@ const HourNumber: FC<HourNumberProps> = ({ idx, containerWidth, color = colors.b
 
 	return (
 		<View style={[styles.hourNumberContainer, { top: cy + shift / 2, left: cx + shift / 2 }, style]}>
-			<Text style={[styles.hourNumber, { color }, textStyle]}>{idx + 1}</Text>
+			<Text style={[styles.hourNumber, textStyle, { color }]}>{idx + 1}</Text>
 		</View>
 	);
 };

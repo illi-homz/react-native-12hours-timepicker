@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { TextStyle } from 'react-native';
 import { StyleProp, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { MeridiemType, TypeSwitcherItem } from '../../types/calendar';
 import styles from './styles';
@@ -13,7 +14,7 @@ const TypeSwitcher: FC<TypeSwitcherProps> = ({ data, value, onTypeChange, style,
 						key={id}
 						activeOpacity={0.7}
 						onPress={() => onTypeChange(itemValue)}>
-						<Text style={[styles.text, itemValue === value && styles.activeText, textStyle]}>{title}</Text>
+						<Text style={[styles.text, textStyle, itemValue === value && styles.activeText]}>{title}</Text>
 					</TouchableOpacity>
 				);
 			})}
@@ -28,5 +29,5 @@ interface TypeSwitcherProps {
 	data: TypeSwitcherItem<MeridiemType>[];
 	onTypeChange: (str: MeridiemType) => void;
 	style?: StyleProp<ViewStyle>;
-	textStyle?: StyleProp<ViewStyle>;
+	textStyle?: StyleProp<TextStyle>;
 }
