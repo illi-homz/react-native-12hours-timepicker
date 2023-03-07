@@ -1,6 +1,7 @@
 # react-native-12hours-timepicker
 
 ### Time picker for US time format
+<br>
 
 <img src="https://github.com/illi-homz/react-native-12hours-timepicker/blob/main/demo/assets/react-native-12hours-timepicker.gif?raw=true" width="250">
 <br>
@@ -52,8 +53,8 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 | onChange | (string): void | Return value in 24 hours format | undefined |
 | title | String | Time picker title | 'Select time' |
 | periodSplitliteral | String | Periods separator | '–' |
-
+<br>
 
 ## Authors
 
-- [Ilya Gomza](https://github.com/illi-homz/) - Initial code
+- [Ilya Gomza](https://github.com/illi-homz/)
