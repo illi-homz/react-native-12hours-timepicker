@@ -4,30 +4,37 @@
 
 <img src="https://github.com/illi-homz/react-native-12hours-timepicker/blob/main/demo/assets/react-native-12hours-timepicker.gif?raw=true" width="250">
 <br>
-<br>
-```bash
-npm i react-native-12hours-timepicker
-or
-yarn add react-native-12hours-timepicker
+
+## Installation
+Using NPM:
 ```
-<br>
-```ts
+$ npm i react-native-12hours-timepicker
+```
+
+Using Yarn:
+```
+$ yarn add react-native-12hours-timepicker
+```
+
+## Usage
+```javascript
 import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 ```
-<br>
-```tsx
+
+
+```javascript
 <TimePicker
-  topPadding={topPadding}
-  dayPeriods={dayPeriods}
-  value={timePickerData.value}
-  onChange={timePickerData.cb}
-  titleStyles={styles.timepickerTitle}
-  timeStyles={styles.timepickerTime}
-  switcherTextStyle={styles.meridiemSwitcherTextStyle}
-  clockFaceNumberStyle={styles.clockFaceNumber}
+  topPadding={0}
+  dayPeriods={{'11:00 – 14:00': 'red'}}
+  value={'13:00'}
+  onChange={(v) => onTimeChange(v)}
+  clockWidth={272}
+  periodSplitliteral="–"
+  title="Select time"
 />
 ```
-<br>
+
+## Options
 
 | Props | Type | Data | Default |
 | --- | --- | --- | --- |
@@ -46,3 +53,7 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 | title | String | Time picker title | 'Select time' |
 | periodSplitliteral | String | Periods separator | '–' |
 
+
+## Authors
+
+- [Ilya Gomza](https://github.com/illi-homz/) - Initial code
