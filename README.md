@@ -39,14 +39,14 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 
 | Props | Type | Data | Default |
 | --- | --- | --- | --- |
-| style | StyleProp | Styles for msin container | - |
+| style | StyleProp | Styles for main container | - |
 | timeContainerStyles | StyleProp | Styles for numeric timer container | - |
 | titleStyles | StyleProp | Styles for title | - |
 | timeStyles | StyleProp | Styles for numeric timer text | - |
 | switcherStyles | StyleProp | Styles for meridiem switcher container | - |
-| clockFaceNumberStyle | StyleProp | Style for number literal on clock face | - |
+| clockFaceNumberStyle | StyleProp | Styles for number literal on clock face | - |
 | switcherTextStyle | StyleProp | Styles for meridiem switcher text | - |
-| topPadding | Number | Status bar height for pan responder if work costom safe-area-view, such as react-native-safe-area-context | 0 |
+| topPadding | Number | Status bar height for pan responder if work custom safe-area-view, such as react-native-safe-area-context | 0 |
 | clockWidth | Number | Default width for analog clock | 272 |
 | value | String | Value in 24 hours format | '00:00' |
 | dayPeriods | { period: color } | Period in 24 hours format and color for this period, **{ '11:00 – 14:00': '#FFA98D' }** | {} |
