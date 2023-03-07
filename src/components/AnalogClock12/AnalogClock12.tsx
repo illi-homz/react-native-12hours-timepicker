@@ -28,7 +28,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 	topPadding = 0,
 	value = '00:00',
 	periods = {},
-	periodSplitliteral = '–',
+	periodSeparator = '–',
 	clockFaceNumberStyle,
 	onHourSelect,
 	onTimeSelectEnd,
@@ -46,7 +46,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 
 	const hoursesColorMap = Object.keys(periods).reduce<{ [key: number]: string }>((acc, period) => {
 		// карта цветов для чисел часов циферблата
-		const [startTime, endTime] = period.split(` ${periodSplitliteral} `);
+		const [startTime, endTime] = period.split(` ${periodSeparator} `);
 		const startHour = startTime.split(':')[0];
 		const endHour = endTime.split(':')[0];
 		const map: { [key: number]: string } = {};
@@ -130,7 +130,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 					})}
 
 					{Object.keys(periods).map((period) => {
-						const [startTime, endTime] = period.split(` ${periodSplitliteral} `);
+						const [startTime, endTime] = period.split(` ${periodSeparator} `);
 						const startHour = startTime.split(':')[0];
 						const endHour = endTime.split(':')[0];
 
@@ -197,7 +197,7 @@ interface AnalogClock12Props {
 	height?: number;
 	topPadding?: number;
 	value?: string;
-	periodSplitliteral?: string;
+	periodSeparator?: string;
 	periods?: { [key: string]: string };
 	onHourSelect?(hour: number, minutes: number): void;
 	onTimeSelectEnd?(hour: number, minutes: number): void;

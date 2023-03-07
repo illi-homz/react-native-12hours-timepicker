@@ -24,12 +24,12 @@ const TimePicker: FC<TimePickerProps> = ({
     clockWidth,
     onChange,
     title = "Select time",
-    timeContainerStyles,
-    titleStyles,
-    timeStyles,
-    switcherStyles,
+    timeContainerStyle,
+    titleStyle,
+    timeStyle,
+    switcherStyle,
     switcherTextStyle,
-    periodSplitliteral = "–",
+    periodSeparator = "–",
     clockFaceNumberStyle,
 }) => {
     const [currentTime, setCurrentTime] = useState(value); // хранилище времени в 12 часовом формате
@@ -52,7 +52,7 @@ const TimePicker: FC<TimePickerProps> = ({
 
     const [amPeriods, pmPeriods] = useMemo(() => {
         // разделение периодов на дополуденных и после
-        return splitPeriodsOnAmAndPm(dayPeriods, periodSplitliteral);
+        return splitPeriodsOnAmAndPm(dayPeriods, periodSeparator);
     }, [dayPeriods]);
 
     const currentPeriods = useMemo(() => {
@@ -88,16 +88,16 @@ const TimePicker: FC<TimePickerProps> = ({
 
     return (
         <View style={[styles.container, style]}>
-            <View style={[styles.digitPickerContainer, timeContainerStyles]}>
+            <View style={[styles.digitPickerContainer, timeContainerStyle]}>
                 {!!title && (
-                    <Text style={[styles.title, titleStyles]}>{title}</Text>
+                    <Text style={[styles.title, titleStyle]}>{title}</Text>
                 )}
-                <Text style={[styles.time, timeStyles]}>{currentTime}</Text>
+                <Text style={[styles.time, timeStyle]}>{currentTime}</Text>
                 <TypeSwitcher
                     data={switcherValues}
                     onTypeChange={setMeridiem}
                     value={meridiem}
-                    style={[styles.switcher, switcherStyles]}
+                    style={[styles.switcher, switcherStyle]}
                     textStyle={switcherTextStyle}
                 />
             </View>
@@ -108,7 +108,7 @@ const TimePicker: FC<TimePickerProps> = ({
                 periods={currentPeriods}
                 onTimeSelectEnd={onTimeSelectEnd}
                 width={clockWidth}
-                periodSplitliteral={periodSplitliteral}
+                periodSeparator={periodSeparator}
                 clockFaceNumberStyle={clockFaceNumberStyle}
             />
         </View>
@@ -119,10 +119,10 @@ export default memo(TimePicker);
 
 interface TimePickerProps {
     style?: StyleProp<ViewStyle>;
-    timeContainerStyles?: StyleProp<ViewStyle>;
-    titleStyles?: StyleProp<ViewStyle>;
-    timeStyles?: StyleProp<ViewStyle>;
-    switcherStyles?: StyleProp<ViewStyle>;
+    timeContainerStyle?: StyleProp<ViewStyle>;
+    titleStyle?: StyleProp<ViewStyle>;
+    timeStyle?: StyleProp<ViewStyle>;
+    switcherStyle?: StyleProp<ViewStyle>;
     clockFaceNumberStyle?: StyleProp<TextStyle>;
     switcherTextStyle?: StyleProp<TextStyle>;
     topPadding?: number;
@@ -131,7 +131,7 @@ interface TimePickerProps {
     dayPeriods?: { [key: string]: string };
     onChange?(v: string): void;
     title?: string;
-    periodSplitliteral?: string;
+    periodSeparator?: string;
 }
 
 const switcherValues: TypeSwitcherItem<"AM" | "PM">[] = [
@@ -141,13 +141,13 @@ const switcherValues: TypeSwitcherItem<"AM" | "PM">[] = [
 
 const splitPeriodsOnAmAndPm = (
     dayPeriods: { [key: string]: string },
-    periodSplitliteral = "–"
+    periodSeparator = "–"
 ) => {
     return Object.keys(dayPeriods).reduce(
         (acc, period) => {
             const [amPeriodsAcc, pmPeriodsAcc] = acc;
             const [startTime, endTime] = period.split(
-                ` ${periodSplitliteral} `
+                ` ${periodSeparator} `
             );
 
             if (startTime < middleTime && endTime < middleTime) {
@@ -164,7 +164,7 @@ const splitPeriodsOnAmAndPm = (
                 const curStartHour = (startHour < 10 ? "0" : "") + startHour;
                 const endHour = +endTime.split(":")[0] - 12;
                 const curEndHour = (endHour < 10 ? "0" : "") + endHour;
-                const curPeriod = `${curStartHour}:00 ${periodSplitliteral} ${curEndHour}:00`;
+                const curPeriod = `${curStartHour}:00 ${periodSeparator} ${curEndHour}:00`;
 
                 return [
                     amPeriodsAcc,
@@ -179,12 +179,12 @@ const splitPeriodsOnAmAndPm = (
                 return [
                     {
                         ...amPeriodsAcc,
-                        [`${startTime} ${periodSplitliteral} 12:00`]:
+                        [`${startTime} ${periodSeparator} 12:00`]:
                             dayPeriods[period],
                     },
                     {
                         ...pmPeriodsAcc,
-                        [`00:00 ${periodSplitliteral} ${curEndHour}:00`]:
+                        [`00:00 ${periodSeparator} ${curEndHour}:00`]:
                             dayPeriods[period],
                     },
                 ];

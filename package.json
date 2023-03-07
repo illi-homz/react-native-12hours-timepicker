@@ -1,6 +1,6 @@
 {
     "name": "react-native-12hours-timepicker",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "12 hours analog time picker",
     "main": "index.js",
     "scripts": {
