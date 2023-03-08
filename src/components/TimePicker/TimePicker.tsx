@@ -30,9 +30,12 @@ const TimePicker: FC<TimePickerProps> = ({
     timeStyle,
     switcherStyle,
     switcherTextStyle,
+    clockNumberShift,
     periodSeparator = "–",
     clockFaceNumberStyle,
-    clockBorderColor =  colors.white1,
+    clockBorderColor,
+    hourDotFillColor,
+    hourDotBorderColor,
 }) => {
     const [currentTime, setCurrentTime] = useState(value); // хранилище времени в 12 часовом формате
     const [meridiem, setMeridiem] = useState<MeridiemType>("AM"); // хранилище полудня
@@ -113,6 +116,9 @@ const TimePicker: FC<TimePickerProps> = ({
                 periodSeparator={periodSeparator}
                 clockFaceNumberStyle={clockFaceNumberStyle}
                 clockBorderColor={clockBorderColor}
+                clockNumberShift={clockNumberShift}
+                hourDotFillColor={hourDotFillColor}
+                hourDotBorderColor={hourDotBorderColor}
             />
         </View>
     );
@@ -130,12 +136,15 @@ interface TimePickerProps {
     switcherTextStyle?: StyleProp<TextStyle>;
     topPadding?: number;
     clockWidth?: number;
+    clockNumberShift?: number;
     value?: string;
     dayPeriods?: { [key: string]: string };
     onChange?(v: string): void;
     title?: string;
     periodSeparator?: string;
     clockBorderColor?: string;
+    hourDotFillColor?: string;
+    hourDotBorderColor?: string;
 }
 
 const switcherValues: TypeSwitcherItem<"AM" | "PM">[] = [
@@ -150,9 +159,7 @@ const splitPeriodsOnAmAndPm = (
     return Object.keys(dayPeriods).reduce(
         (acc, period) => {
             const [amPeriodsAcc, pmPeriodsAcc] = acc;
-            const [startTime, endTime] = period.split(
-                ` ${periodSeparator} `
-            );
+            const [startTime, endTime] = period.split(` ${periodSeparator} `);
 
             if (startTime < middleTime && endTime < middleTime) {
                 return [

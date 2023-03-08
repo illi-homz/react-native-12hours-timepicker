@@ -32,22 +32,24 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
   clockWidth={272}
   periodSeparator="–"
   title="Select time"
+  clockNumberShift={50}
 />
 ```
 
 ```javascript
 <AnalogClock12
-    topPadding={0}
-    // onHourSelect run when Gesture.Pan.**onBegin**() and Gesture.Pan.**onUpdate**()
-    // hour in range from 0 to 11
-    onHourSelect={(hour: number, minutes: number) => onTimeChanged(hour, minutes)}
-    value={'13:00'} // 24 hours format
-    periods={{'07:00 – 09:00': 'red'}} // max hour 12:00
-    // onTimeSelectEnd run when Gesture.Pan.**onFinalize**()
-    // hour in range from 0 to 11
-    onTimeSelectEnd={(hour: number, minutes: number) => onTimeSelectEnd(hour, minutes)}
-    width={272}
-    periodSeparator="–"
+  topPadding={0}
+  // onHourSelect run when Gesture.Pan.**onBegin**() and Gesture.Pan.**onUpdate**()
+  // hour in range from 0 to 11
+  onHourSelect={(hour: number, minutes: number) => onTimeChanged(hour, minutes)}
+  value={'13:00'} // 24 hours format
+  periods={{'07:00 – 09:00': 'red'}} // max hour 12:00
+  // onTimeSelectEnd run when Gesture.Pan.**onFinalize**()
+  // hour in range from 0 to 11
+  onTimeSelectEnd={(hour: number, minutes: number) => onTimeSelectEnd(hour, minutes)}
+  width={272}
+  periodSeparator="–"
+  clockNumberShift={50}
 />
 ```
 
@@ -63,8 +65,11 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 | value | String | Value in 24 hours format | '00:00' |
 | dayPeriods | { period: color } | Period in 24 hours format and color for this period, **{ '11:00 – 14:00': '#FFA98D' }** | {} |
 | onChange | (string): void | Return value in 24 hours format, '14:00' | - |
-| clockBorderColor | String | Clock border color | '#F7F7F7' |
 | periodSeparator | String | Periods keys separator | '–' |
+| clockNumberShift | Number | Offset of the number of hours from the outer point | 50 |
+| clockBorderColor | String | Clock border color | '#F7F7F7' |
+| hourDotFillColor | String | Clock hour dot fill color | '#EBEBEB' |
+| hourDotBorderColor | String | Clock hour dot border color | '#F7F7F7' |
 | style | StyleProp | Styles for main container | - |
 | timeContainerStyle | StyleProp | Styles for numeric timer container | - |
 | titleStyle | StyleProp | Styles for title | - |
@@ -85,6 +90,9 @@ import { TimePicker, AnalogClock12 } from 'react-native-12hours-timepicker'
 | value | String | Value in 24 hours format | '00:00' |
 | periodSeparator | String | Periods keys separator | '–' |
 | clockBorderColor | String | Clock border color | '#F7F7F7' |
+| hourDotFillColor | String | Clock hour dot fill color | '#EBEBEB' |
+| hourDotBorderColor | String | Clock hour dot border color | '#F7F7F7' |
+| clockNumberShift | Number | Offset of the number of hours from the outer point | 50 |
 | periods | Period in 24 hours format and color for this period, but max time 12:00, **{ '09:00 – 12:00': '#FFA98D' }** | {} |
 | onHourSelect | (hour: number, minutes: number) => void | Run when Gesture.Pan handled **onBegin** and **onUpdate**. Hour in range from 0 to 11 | - |
 | onTimeSelectEnd | (hour: number, minutes: number) => void | run when Gesture.Pan handled **onFinalize**. Hour in range from 0 to 11 | - |
