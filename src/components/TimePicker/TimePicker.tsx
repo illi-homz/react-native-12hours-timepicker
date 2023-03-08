@@ -10,6 +10,7 @@ import { TextStyle } from "react-native";
 import { StyleProp, ViewStyle, Text, View } from "react-native";
 import { MeridiemType, TypeSwitcherItem } from "../../types/calendar";
 import { convertTimeToUSFormat } from "../../utils/calendar";
+import colors from "../../utils/colors";
 import AnalogClock12 from "../AnalogClock12";
 import TypeSwitcher from "../TypeSwitcher";
 import styles from "./styles";
@@ -31,6 +32,7 @@ const TimePicker: FC<TimePickerProps> = ({
     switcherTextStyle,
     periodSeparator = "–",
     clockFaceNumberStyle,
+    clockBorderColor =  colors.white1,
 }) => {
     const [currentTime, setCurrentTime] = useState(value); // хранилище времени в 12 часовом формате
     const [meridiem, setMeridiem] = useState<MeridiemType>("AM"); // хранилище полудня
@@ -110,6 +112,7 @@ const TimePicker: FC<TimePickerProps> = ({
                 width={clockWidth}
                 periodSeparator={periodSeparator}
                 clockFaceNumberStyle={clockFaceNumberStyle}
+                clockBorderColor={clockBorderColor}
             />
         </View>
     );
@@ -132,6 +135,7 @@ interface TimePickerProps {
     onChange?(v: string): void;
     title?: string;
     periodSeparator?: string;
+    clockBorderColor?: string;
 }
 
 const switcherValues: TypeSwitcherItem<"AM" | "PM">[] = [

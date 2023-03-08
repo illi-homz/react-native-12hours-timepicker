@@ -1,6 +1,6 @@
 {
     "name": "react-native-12hours-timepicker",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "12 hours analog time picker",
     "main": "index.js",
     "scripts": {
@@ -24,11 +24,12 @@
         "metro-react-native-babel-preset": "^0.75.1"
     },
     "keywords": [
+        "react",
+        "native",
         "react-native",
+        "reactnative",
         "react-component",
         "react-native-component",
-        "react",
-        "react native",
         "mobile",
         "ios",
         "android",
@@ -36,7 +37,10 @@
         "time",
         "picker",
         "timepicker",
-        "analogtimepicker"
+        "time-picker",
+        "analog",
+        "analog-timepicker",
+        "analog-time-picker"
     ],
     "bugs": {
         "url": "https://github.com/illi-homz/react-native-12hours-timepicker/issues"

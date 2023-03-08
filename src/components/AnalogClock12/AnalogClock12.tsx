@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useRef, useState } from 'react';
+import React, { FC, memo, useEffect, useRef, useState, useMemo } from 'react';
 import { StyleProp, ViewStyle, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import colors from '../../utils/colors';
@@ -28,6 +28,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 	topPadding = 0,
 	value = '00:00',
 	periods = {},
+    clockBorderColor = colors.white1,
 	periodSeparator = '–',
 	clockFaceNumberStyle,
 	onHourSelect,
@@ -44,19 +45,21 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 		transform: [{ rotateZ: arrowAngle.value + 'deg' }, { translateY: -(arrowHeight / 2) * scale + 1 }, { scale }],
 	}));
 
-	const hoursesColorMap = Object.keys(periods).reduce<{ [key: number]: string }>((acc, period) => {
-		// карта цветов для чисел часов циферблата
-		const [startTime, endTime] = period.split(` ${periodSeparator} `);
-		const startHour = startTime.split(':')[0];
-		const endHour = endTime.split(':')[0];
-		const map: { [key: number]: string } = {};
-
-		for (let i = +startHour; i <= +endHour; i++) {
-			map[i] = periods[period];
-		}
-
-		return { ...acc, ...map };
-	}, {});
+	const hoursesColorMap = useMemo(() => {
+        return Object.keys(periods).reduce<{ [key: number]: string }>((acc, period) => {
+            // карта цветов для чисел часов циферблата
+            const [startTime, endTime] = period.split(` ${periodSeparator} `);
+            const startHour = startTime.split(':')[0];
+            const endHour = endTime.split(':')[0];
+            const map: { [key: number]: string } = {};
+    
+            for (let i = +startHour; i <= +endHour; i++) {
+                map[i] = periods[period]!!;
+            }
+    
+            return { ...acc, ...map };
+        }, {})
+    }, [periods]);
 
 	if (!hoursesColorMap[12] && hoursesColorMap[0]) {
 		hoursesColorMap[12] = hoursesColorMap[0];
@@ -117,7 +120,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
 						cx="50%"
 						cy="50%"
 						r={(containerWidth - styles.clockSvg.margin) / 2 + 1}
-						stroke={colors.white1}
+						stroke={clockBorderColor}
 						strokeWidth="12"
 						fill="transparent"
 					/>
@@ -194,10 +197,10 @@ interface AnalogClock12Props {
 	style?: StyleProp<ViewStyle>;
 	clockFaceNumberStyle?: StyleProp<ViewStyle>;
 	width?: number;
-	height?: number;
 	topPadding?: number;
 	value?: string;
 	periodSeparator?: string;
+    clockBorderColor?: string;
 	periods?: { [key: string]: string };
 	onHourSelect?(hour: number, minutes: number): void;
 	onTimeSelectEnd?(hour: number, minutes: number): void;
