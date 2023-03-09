@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Circle } from 'react-native-svg';
 import colors from '../../utils/colors';
 
@@ -19,7 +19,7 @@ const HourDot: FC<HourDotProps> = ({ fill = colors.gray, stroke = colors.white1,
 	return <Circle cx={cx} cy={cy} r={r} fill={fill} strokeWidth={strokeWidth} stroke={stroke} />;
 };
 
-export default HourDot;
+export default memo(HourDot);
 
 interface HourDotProps {
 	fill?: string;

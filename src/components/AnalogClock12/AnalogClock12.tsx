@@ -1,10 +1,7 @@
 import React, { FC, memo, useEffect, useRef, useState, useMemo } from "react";
 import { StyleProp, ViewStyle, View } from "react-native";
-import Svg, { Circle } from "react-native-svg";
 import colors from "../../utils/colors";
-import HourDot from "./HourDot";
 import HourNumber from "./HourNumber";
-import PeriodArc from "./PeriodArc";
 import ClockArrow from "./ClockArrow.svg";
 import styles from "./styles";
 import {
@@ -18,6 +15,7 @@ import Animated, {
     useAnimatedStyle,
     useSharedValue,
 } from "react-native-reanimated";
+import ClockFase from "./ClockFase";
 
 const hoursesList = new Array(12).fill(null).map((_, idx) => idx);
 const hoursesItemAngle = 360 / 12;
@@ -142,64 +140,14 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
     return (
         <GestureDetector gesture={gesture}>
             <View style={[styles.container, style]} ref={container}>
-                <Svg
-                    height={containerWidth}
-                    width={containerWidth}
-                    viewBox={`0 0 ${containerWidth} ${containerWidth}`}
-                    style={styles.clockSvg}
-                >
-                    <Circle
-                        cx="50%"
-                        cy="50%"
-                        r={(containerWidth - styles.clockSvg.margin) / 2 + 1}
-                        stroke={clockBorderColor}
-                        strokeWidth="12"
-                        fill="transparent"
-                    />
-                    <Circle cx="50%" cy="50%" r="5" fill={colors.black1} />
-
-                    {hoursesList.map((idx) => {
-                        return (
-                            <HourDot
-                                idx={idx}
-                                key={idx}
-                                fill={hourDotFillColor}
-                                stroke={hourDotBorderColor}
-                                containerWidth={containerWidth}
-                            />
-                        );
-                    })}
-
-                    {Object.keys(periods).map((period) => {
-                        const [startTime, endTime] = period.split(
-                            ` ${periodSeparator} `
-                        );
-                        const startHour = startTime.split(":")[0];
-                        const endHour = endTime.split(":")[0];
-
-                        return (
-                            <PeriodArc
-                                key={period}
-                                startHour={+startHour}
-                                endHour={+endHour}
-                                color={periods[period]}
-                                containerWidth={containerWidth}
-                            />
-                        );
-                    })}
-
-                    {hoursesList.map((idx) => {
-                        return (
-                            <HourDot
-                                idx={idx}
-                                key={idx}
-                                fill="transparent"
-                                stroke={hourDotBorderColor}
-                                containerWidth={containerWidth}
-                            />
-                        );
-                    })}
-                </Svg>
+                <ClockFase
+                    containerWidth={containerWidth}
+                    clockBorderColor={clockBorderColor}
+                    hourDotFillColor={hourDotFillColor}
+                    hourDotBorderColor={hourDotBorderColor}
+                    periods={periods}
+                    periodSeparator={periodSeparator}
+                />
 
                 <Animated.View
                     style={[
