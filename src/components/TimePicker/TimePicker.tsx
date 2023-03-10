@@ -44,14 +44,17 @@ const TimePicker: FC<TimePickerProps> = ({
         // изменение времени при изменении входного параметра
         // который поменяется при окончании выбора времени
         const dateStartUS = convertTimeToUSFormat(value);
-        const [t, m] = dateStartUS.split(" ");
-        currentTime !== t && setCurrentTime(t);
-        meridiem !== m && setMeridiem(m as MeridiemType);
+        const [time, merid] = dateStartUS.split(" ");
+        currentTime !== time && setCurrentTime(time);
+        meridiem !== merid && setMeridiem(merid as MeridiemType);
     }, [value]);
 
     useEffect(() => {
         // изменение времени при переключении полудня
-        const [hours, minutes] = currentTime.split(":");
+        let [hours, minutes] = currentTime.split(":");
+        if (meridiem === "AM" && hours === '12') {
+            hours = '0';
+        }
         onTimeSelectEnd(+hours, +minutes);
     }, [meridiem]);
 
@@ -83,10 +86,11 @@ const TimePicker: FC<TimePickerProps> = ({
         // cb при окончании перемещения стрелки часов
         (hours: number, minutes: number) => {
             const hours24 =
-                meridiem === "PM" && hours < 12 ? (hours += 12) : hours;
+                meridiem === "PM" && hours < 12 ? hours + 12 : hours;
             const twoDigitHours24 = (hours24 < 10 ? "0" : "") + hours24;
             const twoDigitMinutes = (minutes < 10 ? "0" : "") + minutes;
-            onChange?.(`${twoDigitHours24}:${twoDigitMinutes}`);
+            const time24 = `${twoDigitHours24}:${twoDigitMinutes}`;
+            onChange?.(time24);
         },
         [meridiem, onChange]
     );

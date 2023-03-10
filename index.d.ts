@@ -5,3 +5,4 @@
 
 export { TimePicker } from "./src/components";
 export { AnalogClock12 } from './src/components';
+export { convertTimeToUSFormat } from './src/utils/calendar';
