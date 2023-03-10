@@ -84,6 +84,6 @@ interface ClockFaseProps {
     clockBorderColor: string;
     hourDotFillColor: string;
     hourDotBorderColor: string;
-    periods: number;
+    periods: { [key: number]: string };
     periodSeparator: string;
 }

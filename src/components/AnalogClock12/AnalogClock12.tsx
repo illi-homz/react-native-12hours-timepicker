@@ -63,6 +63,10 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
         ],
     }));
 
+    useEffect(() => {
+        setCurrentHour(+initialHours > 12 ? +initialHours - 12 : +initialHours)
+    }, [value])
+
     const hoursesColorMap = useMemo(() => {
         return Object.keys(periods).reduce<{ [key: number]: string }>(
             (acc, period) => {
@@ -82,7 +86,7 @@ const AnalogClock12: FC<AnalogClock12Props> = ({
             },
             {}
         );
-    }, [periods]);
+    }, [periods, value]);
 
     if (!hoursesColorMap[12] && hoursesColorMap[0]) {
         hoursesColorMap[12] = hoursesColorMap[0];
